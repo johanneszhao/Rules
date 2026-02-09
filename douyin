@@ -1,0 +1,30 @@
+# --- 核心域名 ---
+DOMAIN-SUFFIX,amemv.com,direct
+DOMAIN-SUFFIX,douyincdn.com,direct
+DOMAIN-SUFFIX,douyinpic.com,direct
+DOMAIN-SUFFIX,douyinstatic.com,direct
+DOMAIN-SUFFIX,douyinvod.com,direct
+DOMAIN-SUFFIX,idouyinvod.com,direct
+DOMAIN-SUFFIX,douyinliving.com,direct
+
+# --- 字节跳动通用/静态资源/CDN ---
+DOMAIN-SUFFIX,bytecdn.com,direct
+DOMAIN-SUFFIX,bytegecko.com,direct
+DOMAIN-SUFFIX,bdurl.net,direct
+DOMAIN-SUFFIX,pstatp.com,direct
+DOMAIN-SUFFIX,snssdk.com,direct
+DOMAIN-SUFFIX,zijieapi.com,direct
+DOMAIN-SUFFIX,zjcdn.com,direct
+DOMAIN,lf3-static.bytednsdoc.com,direct
+DOMAIN,v5-dy-o-abtest.zjcdn.com,direct
+
+# --- 相关业务（西瓜/头条/百科/火山） ---
+DOMAIN-SUFFIX,ixigua.com,direct
+DOMAIN-SUFFIX,ixiguavideo.com,direct
+DOMAIN-SUFFIX,toutiao.com,direct
+DOMAIN-SUFFIX,baike.com,direct
+DOMAIN-SUFFIX,huoshanimg.com,direct
+
+# --- 其他关联（如腾讯 CDN，根据你提供的列表保留） ---
+DOMAIN-SUFFIX,gtimg.com,direct
+DOMAIN-SUFFIX,gtimg.cn,direct
