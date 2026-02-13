@@ -28,3 +28,6 @@ DOMAIN-SUFFIX,huoshanimg.com,direct
 # --- 其他关联（如腾讯 CDN，根据你提供的列表保留） ---
 DOMAIN-SUFFIX,gtimg.com,direct
 DOMAIN-SUFFIX,gtimg.cn,direct
+DOMAIN-SUFFIX,yingt.fun,direct
+DOMAIN-SUFFIX,bytehwm.com,direct
+DOMAIN-SUFFIX,bytemastatic.com,direct
