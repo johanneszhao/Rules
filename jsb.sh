@@ -329,44 +329,94 @@ EOF
 }
 
 add_vless_ws_tls() {
-    local port=443 uuid path name domain minor tls_block enc_path url
-    read -rp "请输入已解析到本机的域名: " domain
-    [[ ! $domain ]] && err "域名不能为空."
-    uuid=$(gen_uuid)
-    path="/$uuid"
-    name="vless-ws-tls-$domain"
-
-    minor=$(echo "${is_core_ver//v/}" | cut -d. -f2)
-    if [[ ${minor:-0} -ge 14 ]]; then
-        tls_block="\"enabled\": true, \"server_name\": \"$domain\", \"certificate_provider\": { \"type\": \"acme\", \"domain\": [\"$domain\"] }"
-    else
-        tls_block="\"enabled\": true, \"server_name\": \"$domain\", \"acme\": { \"domain\": [\"$domain\"] }"
+    local domain uuid name path
+    read -p "请输入已解析到本机的域名: " domain
+    [ -z "$domain" ] && { red "域名不能为空"; return 1; }
+    
+    # 检查并安装 Caddy
+    if ! command -v caddy &>/dev/null; then
+        green "正在安装 Caddy..."
+        apt update
+        apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
+        curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+        curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
+        apt update
+        apt install -y caddy
+        systemctl enable caddy
     fi
-
+    
+    uuid=$(gen_uuid)
+    name="vless-ws-tls-$domain"
+    path="/$uuid"
+    
+    # sing-box 改为监听本地端口（不需要 TLS）
+    local ws_port=10000
     cat >"$is_conf_dir/${name}.json" <<EOF
 {
   "inbounds": [
     {
       "type": "vless",
       "tag": "$name",
-      "listen": "::",
-      "listen_port": $port,
-      $inbound_perf,
+      "listen": "127.0.0.1",
+      "listen_port": $ws_port,
       "users": [ { "uuid": "$uuid" } ],
-      "tls": { $tls_block },
-      "transport": { "type": "ws", "path": "$path", "max_early_data": 2048, "early_data_header_name": "Sec-WebSocket-Protocol" }
+      "transport": { 
+        "type": "ws", 
+        "path": "$path"
+      }
     }
   ]
 }
 EOF
+    
     restart_core "$is_conf_dir/${name}.json" || return 1
+    
+    # 配置 Caddy 反向代理
+    cat >"/etc/caddy/conf.d/${name}.caddy" <<EOF
+$domain {
+    @websocket {
+        header Connection *Upgrade*
+        header Upgrade websocket
+        path $path
+    }
+    reverse_proxy @websocket 127.0.0.1:$ws_port
+}
+EOF
+    
+    # 确保 Caddy 配置目录存在
+    mkdir -p /etc/caddy/conf.d
+    
+    # 主配置文件导入子配置
+    if ! grep -q "import conf.d/\*.caddy" /etc/caddy/Caddyfile 2>/dev/null; then
+        echo "import conf.d/*.caddy" >> /etc/caddy/Caddyfile
+    fi
+    
+    # 重启 Caddy
+    systemctl restart caddy
+    
+    # 等待证书申请（最多 30 秒）
+    green "正在申请 SSL 证书，请稍候..."
+    sleep 5
+    for i in {1..6}; do
+        if curl -sk "https://$domain" &>/dev/null; then
+            green "证书申请成功！"
+            break
+        fi
+        [ $i -eq 6 ] && yellow "证书申请可能失败，请检查域名解析和防火墙"
+        sleep 5
+    done
+    
     open_port 443 tcp
+    open_port 80 tcp  # Let's Encrypt 需要
+    
     enc_path=$(echo "$path" | sed 's:/:%2F:g')
     url="vless://$uuid@$domain:443?encryption=none&security=tls&sni=$domain&type=ws&host=$domain&path=$enc_path#$name"
     mkdir -p "$is_link_dir"
     echo "$url" >"$is_link_dir/$name.txt"
+    
     green "\nVLESS-WS-TLS 节点已创建:"
     echo "$url"
+    yellow "\n提示: 请确保域名 $domain 已正确解析到本机 IP: $is_addr"
 }
 
 # ---------------- systemd 服务 ----------------
