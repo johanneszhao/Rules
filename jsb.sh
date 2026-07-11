@@ -329,94 +329,78 @@ EOF
 }
 
 add_vless_ws_tls() {
-    local domain uuid name path
-    read -p "请输入已解析到本机的域名: " domain
-    [ -z "$domain" ] && { red "域名不能为空"; return 1; }
-    
-    # 检查并安装 Caddy
-    if ! command -v caddy &>/dev/null; then
-        green "正在安装 Caddy..."
-        apt update
-        apt install -y debian-keyring debian-archive-keyring apt-transport-https curl
-        curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
-        curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
-        apt update
-        apt install -y caddy
-        systemctl enable caddy
+    local port=443 uuid path name domain enc_path url resolved
+    read -rp "请输入已解析到本机的域名: " domain
+    [[ ! $domain ]] && err "域名不能为空."
+
+    # 域名解析检查 (套 CF 橙云会导致 ACME 失败, 提前提醒)
+    resolved=$(getent ahostsv4 "$domain" 2>/dev/null | awk 'NR==1{print $1}')
+    if [[ $resolved && $resolved != "$is_addr" ]]; then
+        yellow "警告: $domain 解析到 $resolved, 与本机 IP ($is_addr) 不一致。"
+        yellow "若域名在 Cloudflare 上开了代理(橙云), 请先改为仅 DNS(灰云), 否则证书无法签发。"
+        read -rp "仍要继续? [y/N]: " yn
+        [[ ! $yn =~ ^[Yy]$ ]] && return 1
     fi
-    
+
+    # 80 端口用于 ACME HTTP-01 挑战, 必须空闲
+    if ss -tlnp 2>/dev/null | awk '{print $4}' | grep -qE ':(80)$'; then
+        err "80 端口已被占用, ACME 证书签发需要 80 端口, 请先停掉占用它的程序。"
+    fi
+
     uuid=$(gen_uuid)
-    name="vless-ws-tls-$domain"
     path="/$uuid"
-    
-    # sing-box 改为监听本地端口（不需要 TLS）
-    local ws_port=10000
+    name="vless-ws-tls-$domain"
+
     cat >"$is_conf_dir/${name}.json" <<EOF
 {
   "inbounds": [
     {
       "type": "vless",
       "tag": "$name",
-      "listen": "127.0.0.1",
-      "listen_port": $ws_port,
+      "listen": "::",
+      "listen_port": $port,
+      $inbound_perf,
       "users": [ { "uuid": "$uuid" } ],
-      "transport": { 
-        "type": "ws", 
-        "path": "$path"
-      }
+      "tls": {
+        "enabled": true,
+        "server_name": "$domain",
+        "acme": {
+          "domain": ["$domain"],
+          "email": "acme@$domain",
+          "data_directory": "$is_cert_dir/acme"
+        }
+      },
+      "transport": { "type": "ws", "path": "$path" }
     }
   ]
 }
 EOF
-    
     restart_core "$is_conf_dir/${name}.json" || return 1
-    
-    # 配置 Caddy 反向代理
-    cat >"/etc/caddy/conf.d/${name}.caddy" <<EOF
-$domain {
-    @websocket {
-        header Connection *Upgrade*
-        header Upgrade websocket
-        path $path
-    }
-    reverse_proxy @websocket 127.0.0.1:$ws_port
-}
-EOF
-    
-    # 确保 Caddy 配置目录存在
-    mkdir -p /etc/caddy/conf.d
-    
-    # 主配置文件导入子配置
-    if ! grep -q "import conf.d/\*.caddy" /etc/caddy/Caddyfile 2>/dev/null; then
-        echo "import conf.d/*.caddy" >> /etc/caddy/Caddyfile
-    fi
-    
-    # 重启 Caddy
-    systemctl restart caddy
-    
-    # 等待证书申请（最多 30 秒）
-    green "正在申请 SSL 证书，请稍候..."
-    sleep 5
-    for i in {1..6}; do
-        if curl -sk "https://$domain" &>/dev/null; then
-            green "证书申请成功！"
-            break
-        fi
-        [ $i -eq 6 ] && yellow "证书申请可能失败，请检查域名解析和防火墙"
-        sleep 5
-    done
-    
+    open_port 80 tcp
     open_port 443 tcp
-    open_port 80 tcp  # Let's Encrypt 需要
-    
+
+    # 等待首次证书签发
+    yellow "正在等待 Let's Encrypt 证书签发 (首次约 10~60 秒)..."
+    local i ok=
+    for i in $(seq 1 30); do
+        if echo | timeout 5 openssl s_client -connect 127.0.0.1:443 \
+            -servername "$domain" 2>/dev/null | grep -q "BEGIN CERTIFICATE"; then
+            ok=1; break
+        fi
+        sleep 2
+    done
+    if [[ $ok ]]; then
+        green "证书签发成功。"
+    else
+        yellow "暂未检测到有效证书, 可能仍在签发中或已失败。"
+        yellow "排查: tail -n 50 $is_log_dir/box.log ; 确认 80/443 已在云厂商安全组放行、域名为灰云直连。"
+    fi
+
     enc_path=$(echo "$path" | sed 's:/:%2F:g')
     url="vless://$uuid@$domain:443?encryption=none&security=tls&sni=$domain&type=ws&host=$domain&path=$enc_path#$name"
     mkdir -p "$is_link_dir"
-    echo "$url" >"$is_link_dir/$name.txt"
-    
-    green "\nVLESS-WS-TLS 节点已创建:"
+    echo "$url" >"$is_link_dir/$name.txt"    green "\nVLESS-WS-TLS 节点已创建:"
     echo "$url"
-    yellow "\n提示: 请确保域名 $domain 已正确解析到本机 IP: $is_addr"
 }
 
 # ---------------- systemd 服务 ----------------
