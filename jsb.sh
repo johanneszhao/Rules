@@ -152,7 +152,7 @@ EOF
 }
 
 # 通用性能内联字段
-inbound_perf='"tcp_fast_open": true, "sniff": true, "sniff_override_destination": false'
+inbound_perf='"tcp_fast_open": true'
 
 # ------- 添加节点 ----------------
 add_anytls() {
