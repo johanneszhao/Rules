@@ -459,6 +459,17 @@ update_script() {
 }
 
 # ---------------- 卸载 ----------------
+close_port() {
+    local port=$1 proto=${2:-tcp}
+    if command -v ufw >/dev/null 2>&1 && ufw status 2>/dev/null | grep -q "Status: active"; then
+        ufw delete allow "$port/$proto" >/dev/null 2>&1
+    fi
+    if command -v firewall-cmd >/dev/null 2>&1 && systemctl is-active --quiet firewalld 2>/dev/null; then
+        firewall-cmd --permanent --remove-port="$port/$proto" >/dev/null 2>&1
+        firewall-cmd --reload >/dev/null 2>&1
+    fi
+}
+
 uninstall_all() {
     yellow "即将完整卸载 sing-box、所有配置及优化设置。"
     read -rp "确认卸载? [y/N]: " yn
@@ -466,6 +477,17 @@ uninstall_all() {
         msg "已取消."
         return
     }
+
+    # 回收防火墙放行的端口 (趁配置还在, 从各节点 json 里读端口)
+    local f p
+    for f in "$is_conf_dir"/*.json; do
+        [[ -f $f ]] || continue
+        p=$(jq -r '.inbounds[0].listen_port // empty' "$f" 2>/dev/null)
+        [[ $p ]] && close_port "$p" tcp
+    done
+    # WS-TLS 会额外用到 80 端口
+    close_port 80 tcp
+
     systemctl stop sing-box 2>/dev/null
     systemctl disable sing-box 2>/dev/null
     rm -f /etc/systemd/system/sing-box.service
