@@ -15,8 +15,8 @@ is_bin_dir="$is_dir/bin"
 is_core_bin="$is_bin_dir/sing-box"
 is_sh_file="/usr/local/bin/$is_sh_bin"
 is_log_dir="$is_dir/logs"
-is_reality_sni="www.tesla.com"       # Reality 伪装站
-is_anytls_sni="www.microsoft.com"    # AnyTLS 自签证书 CN
+is_reality_sni="www.tesla.com"
+is_anytls_sni="www.microsoft.com"
 
 # ------------- 颜色输出 ----------------
 red()   { echo -e "\033[31m$*\033[0m"; }
@@ -33,7 +33,7 @@ check_root() {
 check_arch() {
     case $(uname -m) in
         x86_64|amd64)  is_arch=amd64 ;;
-        arch64|arm64) is_arch=arm64 ;;
+        aarch64|arm64) is_arch=arm64 ;;
         armv7l)        is_arch=armv7 ;;
         *) err "不支持的架构: $(uname -m)" ;;
     esac
@@ -59,7 +59,7 @@ _wget() { curl -fsSL --retry 3 "$@"; }
 get_ip() {
     is_addr=$(curl -fsSL4 --max-time 8 https://api.ipify.org 2>/dev/null)
     [[ ! $is_addr ]] && is_addr=$(curl -fsSL6 --max-time 8 https://api64.ipify.org 2>/dev/null)
-    [[ ! $is_addr ] && err "无法获取本机公网 IP."
+    [[ ! $is_addr ]] && err "无法获取本机公网 IP."
     if [[ $is_addr == *:* ]]; then
         is_ip_fmt="[$is_addr]"
     else
@@ -84,7 +84,7 @@ download_core() {
     green "正在获取 $is_core_name 最新版本..."
     local ver
     ver=$(_wget "https://api.github.com/repos/${is_core_repo}/releases/latest" | jq -r '.tag_name')
-    [[ ! $ver ] && err "获取最新版本失败."
+    [[ ! $ver ]] && err "获取最新版本失败."
     is_core_ver="$ver"
 
     local tmp file link
@@ -97,7 +97,7 @@ download_core() {
     tar zxf "$file" --strip-components 1 -C "$is_bin_dir"
     chmod +x "$is_core_bin"
     rm -rf "$tmp"
-    [[ -x $is_core_bin ] || err "内核安装失败."
+    [[ -x $is_core_bin ]] || err "内核安装失败."
 }
 
 # ------------- 性能优化 (BBR + sysctl) ----------------
@@ -106,9 +106,9 @@ optimize_system() {
     modprobe tcp_bbr 2>/dev/null
     cat > /etc/sysctl.d/99-singbox-opt.conf <<'EOF'
 net.core.default_qdisc = fq
-net.ipv4.tcp_congestion_control = br
+net.ipv4.tcp_congestion_control = bbr
 net.ipv4.tcp_fastopen = 3
-net.core.rmem_max = 3355432
+net.core.rmem_max = 33554432
 net.core.wmem_max = 33554432
 net.ipv4.tcp_rmem = 4096 87380 33554432
 net.ipv4.tcp_wmem = 4096 65536 33554432
@@ -126,14 +126,14 @@ net.ipv4.udp_wmem_min = 8192
 EOF
     sysctl --system >/dev/null 2>&1
     if ! grep -q "singbox-nofile" /etc/security/limits.conf; then
-        cat >> /etc/security/limits.conf <'EOF'
+        cat >> /etc/security/limits.conf <<'EOF'
 # singbox-nofile
 * soft nofile 1048576
 * hard nofile 1048576
 EOF
     fi
     ulimit -n 1048576 2>/dev/null
-    local c
+    local cc
     cc=$(sysctl -n net.ipv4.tcp_congestion_control)
     green "当前拥塞控制算法: $cc"
 }
@@ -192,9 +192,9 @@ EOF
 }
 
 add_reality() {
-    local port uid keypair prikey pubkey sid name
+    local port uuid keypair prikey pubkey sid name
     port=$(get_port)
-    uuid=$(gen_uid)
+    uuid=$(gen_uuid)
     keypair=$("$is_core_bin" generate reality-keypair)
     prikey=$(echo "$keypair" | awk '/PrivateKey/{print $2}')
     pubkey=$(echo "$keypair" | awk '/PublicKey/{print $2}')
@@ -233,7 +233,7 @@ EOF
 add_vless_ws_tls() {
     local port=443 uuid path name domain minor tls_block enc_path
     read -rp "请输入已解析到本机的域名: " domain
-    [ ! $domain ]] && err "域名不能为空."
+    [[ ! $domain ]] && err "域名不能为空."
     uuid=$(gen_uuid)
     path="/$uuid"
     name="vless-ws-tls-$domain"
@@ -309,7 +309,7 @@ install_shortcut() {
 uninstall_all() {
     yellow "即将完整卸载 sing-box、所有配置及优化设置。"
     read -rp "确认卸载? [y/N]: " yn
-    [ ! $yn =~ ^[Yy]$ ]] && { msg "已取消."; return; }
+    [[ ! $yn =~ ^[Yy]$ ]] && { msg "已取消."; return; }
     systemctl stop sing-box 2>/dev/null
     systemctl disable sing-box 2>/dev/null
     rm -f /etc/systemd/system/sing-box.service
@@ -359,20 +359,20 @@ menu() {
     green "===== sing-box 精简管理菜单 ====="
     echo "  1) 添加 AnyTLS       (自动端口/密码)"
     echo "  2) 添加 Reality      (自动端口/密钥, 伪装 $is_reality_sni)"
-    echo "  3) 添加 VLES-WS-TLS (需域名)"
+    echo "  3) 添加 VLESS-WS-TLS (需域名)"
     echo "  4) 查看节点列表"
     echo "  5) 运行状态"
     echo "  6) 重启服务"
     echo "  9) 完整卸载"
     echo "  0) 退出"
-    echo "================="
+    echo "=================================="
     read -rp "请选择: " opt
     case $opt in
         1) add_anytls ;;
         2) add_reality ;;
         3) add_vless_ws_tls ;;
         4) list_nodes ;;
-        5) show_status ;
+        5) show_status ;;
         6) systemctl restart sing-box && green "已重启." ;;
         9) uninstall_all ;;
         0) exit 0 ;;
