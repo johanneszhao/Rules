@@ -359,37 +359,46 @@ do_install() {
     menu
 }
 
-# ---------------- 菜单 ----------
+# ---------------- 暂停 ----------------
+pause() {
+    echo
+    read -rp "按 Enter 回车键返回菜单.." _
+}
+
+# --------- 菜单 ----------
 menu() {
     check_root
     check_arch
     [[ -x $is_core_bin ]] && is_core_ver=$("$is_core_bin" version 2>/dev/null | awk 'NR==1{print "v"$3}')
     get_ip
-    echo
-    green "===== sing-box 精简管理菜单 ====="
-    echo "  1) 添加 AnyTLS       (自动端口/密码)"
-    echo "  2) 添加 Reality      (自动端口/密钥, 伪装 $is_reality_sni)"
-    echo "  3) 添加 VLESS-WS-TLS (需域名)"
-    echo "  4) 查看节点列表"
-    echo "  5) 运行状态"
-    echo "  6) 重启服务"
-    echo "  7) 重建基础配置 (修复 legacy 字段问题)"
-    echo "  9) 完整卸载"
-    echo "  0) 退出"
-    echo "=================================="
-    read -rp "请选择: " opt
-    case $opt in
-        1) add_anytls ;;
-        2) add_reality ;;
-        3) add_vless_ws_tls ;;
-        4) list_nodes ;;
-        5) show_status ;;
-        6) systemctl restart sing-box && green "已重启." ;;
-        7) init_base_config && green "已重建基础配置." ;;
-        9) uninstall_all ;;
-        0) exit 0 ;;
-        *) red "无效选项" ;;
-    esac
+
+    while :; do
+        echo
+        green "=== sing-box 精简管理菜单 ($is_core_ver) ====="
+        echo "  1) 添加 AnyTLS       (自动端口/密码)"
+        echo "  2) 添加 Reality      (自动端口/密钥, 伪装 $is_reality_sni)"
+        echo "  3) 添加 VLESS-WS-TLS (需域名)"
+        echo "  4) 查看节点列表"
+        echo "  5) 运行状态"
+        echo "  6) 重启服务"
+        echo "  7) 重建基础配置 (修复 legacy 字段)"
+        echo "  9) 完整卸载"
+        echo "  0) 退出"
+        echo "================================="
+        read -rp "请选择: " opt
+        case $opt in
+            1) add_anytls; pause ;;
+            2) add_reality; pause ;;
+            3) add_vless_ws_tls; pause ;;
+            4) list_nodes; pause ;;
+            5) show_status; pause ;;
+            6) systemctl restart sing-box && green "已重启."; pause ;;
+            7) init_base_config && green "已重建基础配置."; pause ;;
+            9) uninstall_all; pause ;;
+            0) exit 0 ;;
+            *) red "无效选项"; pause ;;
+        esac
+    done
 }
 
 # --------- 入口 ------------
