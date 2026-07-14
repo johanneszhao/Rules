@@ -1,0 +1,52 @@
+[general]
+resource_parser_url=https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
+profile_img_url=https://github.githubassets.com/images/modules/site/integrators/google.png
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN, https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/IP_API.js
+excluded_routes=239.255.255.250/32, 24.105.30.129/32, 185.60.112.157/32, 182.162.132.1/32, 192.168.0.0/16, 172.16.0.0/12, 100.64.0.0/10, 10.0.0.0/8
+dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.me, *.pingan.com.cn, *.cmbchina.com,*.qq.com
+icmp_auto_reply = true
+fallback_udp_policy = reject
+udp_drop_list = QUIC
+[dns]
+no-system
+no-ipv6
+server = 223.6.6.6
+server = 1.1.1.1
+[rewrite_remote]
+https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/config/QX.snippet, tag=Sub-store(高级订阅管理器), update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/YoutubeAds.conf, tag=Youtube广告, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.conf, tag=Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/QuellaMC/NeteaseUnlocker/main/NeteaseUnlocker.snippet, tag=NeteaseMusic, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Function/EmbyPlugin.conf, tag=Emby, update-interval=172800, opt-parser=true, enabled=true
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.snippet, tag=天气, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/WeiboAds.conf, tag=weibo, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/refs/heads/master/AdBlock/AmapAds.conf, tag=高德地图, update-interval=172800, opt-parser=true, enabled=true
+[filter_remote]
+https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-QuantumultX.list, tag=Adblock, force-policy=reject, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/w37fhy/QuantumultX/master/Rules/Hijacking.list, tag=Hijacking, force-policy=reject, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/Centralmatrix3/Scripts/master/QuantumultX/Ruleset/Apple.list, tag=Apple, force-policy=direct, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/115/115.list, tag=115, force-policy=direct, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/WeChat/WeChat.list, tag=Wechat, force-policy=direct, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/BiliBili/BiliBili.list, tag=Bilibili, force-policy=direct, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/douyin.list, tag=Douyin, force-policy=direct, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/DMM/DMM.list, tag=Dmm, force-policy=🌸DMM, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/Block.list, tag=Falun, force-policy=🌸DMM, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Binance/Binance.list, tag=Binance, force-policy=🌸DMM, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/AppleTV/AppleTV.list, tag=Apple TV, force-policy=🌸DMM, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=🌸DMM, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Instagram/Instagram.list, tag=Instagram, force-policy=🌸DMM, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/Netflix.list, tag=Netflix, force-policy=🥁Netflix, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/HBO/HBO.list, tag=HBO, force-policy=🥁Netflix, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/CBS/CBS.list, tag=CBS, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/ParamountPlus/ParamountPlus.list, tag=Paramount, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/TikTok/TikTok.list, tag=TikTok, force-policy=🧩Spotify, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Spotify/Spotify.list, tag=Spotify, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/OpenAI/OpenAI.list, tag=OpenAi, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/claude.list, tag=Claude, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Twitter/Twitter.list, tag=Twitter, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Cloudflare/Cloudflare.list, tag=Clouflare, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Google/Google.list, tag=Google, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/YouTube/YouTube.list, tag=Youtube, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Gemini/Gemini.list, tag=Gemini, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/pikpak.list, tag=Pikpak, force-policy=🐟Final, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/PikpakDL.list, tag=PikpakDL, force-policy=🐟Final, update-interval=172800, opt-parser=true, enabled=true
