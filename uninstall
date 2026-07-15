@@ -1,0 +1,428 @@
+[general]
+resource_parser_url=https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
+profile_img_url=https://github.githubassets.com/images/modules/site/integrators/google.png
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN, https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/IP_API.js
+excluded_routes=239.255.255.250/32, 24.105.30.129/32, 185.60.112.157/32, 182.162.132.1/32, 192.168.0.0/16, 172.16.0.0/12, 100.64.0.0/10, 10.0.0.0/8
+dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.me, *.pingan.com.cn, *.cmbchina.com,*.qq.com
+icmp_auto_reply = true
+fallback_udp_policy = reject
+udp_drop_list = QUIC
+[dns]
+no-system
+no-ipv6
+server = 223.6.6.6
+server = 1.1.1.1
+[policy]
+static=🌸DMM, 🇯🇵SoftBank, proxy, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Pandora.png
+static=🥁Netflix, 🇸🇬XTom, proxy, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix_Letter.png
+static=🧩Spotify, 🇺🇸NTT, proxy, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png
+static=🐟Final, proxy, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png
+[server_remote]
+https://liangxin.xyz/api/v1/liangxin?OwO=434e966365de417e238a206bdf13f1b1, tag=Liangxin, update-interval=172800, opt-parser=true, enabled=false
+https://xsus2.aoxwfp.cn/wm4YAhsRMQjn5Uwf?token=5b13ff8cc6873c40b56729e41aba6062, tag=Xsus, update-interval=172800, opt-parser=true, enabled=false
+https://b.johii.com/sub/22da917f-c451-4c9e-8767-4b75311056fe#BPB-Normal, tag=BPB, update-interval=172800, opt-parser=true, enabled=false
+bandwagon.snippet, tag=Bandwagon, update-interval=172800, opt-parser=true, enabled=false
+[filter_remote]
+https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-QuantumultX.list, tag=Adblock, force-policy=reject, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/Centralmatrix3/Scripts/master/QuantumultX/Ruleset/Apple.list, tag=Apple, force-policy=direct, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/115/115.list, tag=115, force-policy=direct, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/douyin.list, tag=Douyin, force-policy=direct, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/WeChat/WeChat.list, tag=Wechat, force-policy=direct, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/BiliBili/BiliBili.list, tag=Bilibili, force-policy=direct, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/DMM/DMM.list, tag=Dmm, force-policy=🌸DMM, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Binance/Binance.list, tag=Binance, force-policy=🌸DMM, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/AppleTV/AppleTV.list, tag=Apple TV, force-policy=🌸DMM, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=🌸DMM, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/OpenAI/OpenAI.list, tag=OpenAi, force-policy=🌸DMM, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/Netflix.list, tag=Netflix, force-policy=🥁Netflix, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/HBO/HBO.list, tag=HBO, force-policy=🥁Netflix, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/paramount.list, tag=Paramount, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Spotify/Spotify.list, tag=Spotify, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/claude.list, tag=Claude, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Twitter/Twitter.list, tag=Twitter, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Instagram/Instagram.list, tag=Instagram, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Cloudflare/Cloudflare.list, tag=Clouflare, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Gemini/Gemini.list, tag=Gemini, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/Google/Google.list, tag=Google, force-policy=🧩Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/YouTube/YouTube.list, tag=Youtube, force-policy=🧩Spotify, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/QuantumultX/TikTok/TikTok.list, tag=TikTok, force-policy=🧩Spotify, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/johanneszhao/Rules/refs/heads/main/pikpak.list, tag=Pikpak, force-policy=🐟Final, update-interval=172800, opt-parser=true, enabled=true
+[rewrite_remote]
+https://raw.githubusercontent.com/Peng-YM/Sub-Store/master/config/QX.snippet, tag=Sub-store(高级订阅管理器), update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/YoutubeAds.conf, tag=Youtube广告, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/app2smile/rules/master/module/spotify.conf, tag=Spotify, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/QuellaMC/NeteaseUnlocker/main/NeteaseUnlocker.snippet, tag=NeteaseMusic, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Function/EmbyPlugin.conf, tag=Emby, update-interval=172800, opt-parser=true, enabled=true
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.snippet, tag=天气, update-interval=172800, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/WeiboAds.conf, tag=weibo, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/refs/heads/master/AdBlock/AmapAds.conf, tag=高德地图, update-interval=172800, opt-parser=true, enabled=true
+[filter_local]
+host-suffix, app-analytics-services.com, reject
+host-suffix, app-analytics-services-att.com, reject
+host-suffix, app-measurement.com, reject
+host-suffix, app-measurement.net, reject
+host-suffix, app-measurement-cn.com, reject
+host-suffix, swdist.apple.com, reject
+host-suffix, swscan.apple.com, reject
+host-suffix, swcdn.apple.com, reject
+host-suffix, xp.apple.com, reject
+host-suffix, gdmf.apple.com, reject
+host-suffix, mesu.apple.com, reject
+host,updates-http.cdn-apple.com,reject
+host-suffix, access.pikpakdrive.com, reject
+host-suffix, access.mypikpak.net, reject
+host-suffix, access.pikpak.me, reject
+host-suffix, access.mypikpak.com, reject
+host-suffix, doubleclick.net, reject
+host, ad.12306.cn, reject
+host, adstrategy.biz.weibo.com, reject
+host-suffix, appsflyersdk.com, reject
+host-suffix, appsflyer.com, reject
+host-suffix, go-mpulse.net, reject
+host-suffix, amplitude.com, reject
+host-suffix, customer.io, reject
+host-suffix, doubleverify.com, reject
+host-suffix, miaozhen.com, reject
+host-suffix, tanx.com, reject
+host-suffix, mmstat.com, reject
+host-suffix, doubleclick.com, reject
+host-suffix, googleadservices.com, reject
+host-suffix, googlesyndication.com, reject
+host-suffix, google-analytics.com, reject
+host-suffix, app-measurement.com, reject
+host-suffix, fullstory.com, reject
+host-suffix, eum-appdynamics.com, reject
+host-suffix, crashlytics.com, reject
+host-suffix, ugdtimg.com, reject
+host-suffix, gdt.qq.com, reject
+host-suffix, e.qq.com, reject
+host, hm.baidu.com, reject
+host-suffix, mobads.baidu.com, reject
+#直连
+host-suffix, ydycdn.com, direct
+host-suffix, xinqiucc.com, direct
+host-suffix, cjjd14.com, direct
+host-suffix, jspcdn.cn, direct
+host-suffix, tianwenca.com, direct
+host-suffix, qiezibenpao.com, direct
+host-suffix, quark.cn, direct
+host-suffix, solseed.cn, direct
+host-suffix, ecombdpage.com, direct
+host-suffix, byteeffecttos.com, direct
+host-suffix, ecombdapi.com, direct
+host-suffix, qishui.com, direct
+host-suffix, alipay.com.cn, direct
+host-suffix, wo.cn, direct
+host-suffix, dianping.com, direct
+host-suffix, ecombdimg.com, direct
+host-suffix, ndcpp.com, direct
+host-suffix, dewucdn.com, direct
+host-suffix, jdpay.com, direct
+host-suffix, 360buyimg.com, direct
+host-suffix, goofish.com, direct
+host-suffix, jpush.cn, direct
+host-suffix, volces.com, direct
+host-suffix, jd.com, direct
+host-suffix, pinduoduo.com, direct
+host-suffix, gov.cn, direct
+host-suffix, cainiao.com, direct
+host-suffix, qq.com, direct
+host-suffix, qq.cn, direct
+host-suffix, tencent.com, direct
+host-suffix, wechat.com, direct
+host-suffix, weixin.com, direct
+host-suffix, weiyun.com, direct
+host-suffix, tenpay.com, direct
+host-suffix, gtimg.cn, direct
+host-suffix, gtimg.com, direct
+host-suffix, idqqimg.com, direct
+host-suffix, qcloudimg.com, direct
+host-suffix, walmartmobile.cn, direct
+host-suffix, ihg.com, direct
+host-suffix, dpfile.com, direct
+host-suffix, tplinkcloud.com.cn, direct
+host-suffix, doh.pub, direct
+host-suffix, alidns.com, direct
+host-suffix, zhihu.com, direct
+host-suffix, digicert.cn, direct
+host-suffix, dnspod.cn, direct
+host-suffix, dewu.com, direct
+host-suffix, umetrip.com, direct
+host-suffix, umetrip.com.cn, direct
+host-suffix, eudic.net, direct
+host-suffix, hunantv.com, direct
+host-suffix, hitv.com, direct
+host-suffix, mgtv.com, direct
+host-suffix, aliapp.org, direct
+host-suffix, xiaojukeji.com, direct
+host-suffix, xhscdn.com, direct
+host-suffix, neixin.cn, direct
+host-suffix, meituan.com, direct
+host-suffix, meituan.net, direct
+host-suffix, maoyan.com, direct
+HOST-SUFFIX,mtyun.com, direct
+HOST-SUFFIX,sankuai.com, direct
+host-suffix, weixin.qq.com, direct
+host-suffix, weixinbridge.com, direct
+host-suffix, weixin.cn, direct
+host-suffix, xiaohongshu.com, direct
+host-suffix, xhslink.com, direct
+HOST-SUFFIX,a-map.cn,direct
+HOST-SUFFIX,a-map.co,direct
+HOST-SUFFIX,a-map.link,direct
+HOST-SUFFIX,a-map.vip,direct
+HOST-SUFFIX,amap.com,direct
+HOST-SUFFIX,amap.cn,direct
+HOST-SUFFIX,amapauto.com,direct
+HOST-SUFFIX,anav.com,direct
+HOST-SUFFIX,autonavi.com,direct
+HOST-SUFFIX,gaode.com,direct
+host-suffix, taobao.com, direct
+host-suffix, taobaocdn.com, direct
+host-suffix, tmall.com, direct
+host-suffix, tmall.hk, direct
+host-suffix, alicdn.com, direct
+host-suffix, alipay.com, direct
+host-suffix, alipayobjects.com, direct
+host-suffix, alipay.cn,direct
+host-suffix, caiyunapp.com, direct
+host-suffix, ampaeservices.com, direct
+host-suffix, douban.com, direct
+host-suffix, doubanio.com, direct
+host-suffix, tec73.com, direct
+host-suffix, alibaba.com, direct
+host-suffix, alibaba-inc.com, direct
+host-suffix, 1688.com, direct
+host-suffix, kuaishouzt.com, direct
+host-suffix, id6.me, direct
+host-suffix, pingan.com.cn, direct
+host-suffix, baidu.com, direct
+host-suffix, weibocdn.com, direct
+host-suffix, weibo.com, direct
+host-suffix, weibo.cn, direct
+host-suffix, seetacloud.com, direct
+host-suffix, rjf37.com, direct
+host-suffix, vo0.site, direct
+host-suffix, 4horlover.com, direct
+host-suffix, anjuke.com, direct
+host-suffix, ndcimgs.com, direct
+host-suffix, media.tyzm1.top, direct
+host-suffix, ucweb.com, direct
+host-suffix, livehwc3.cn, direct
+host-suffix, cup.com.cn, direct
+host-suffix, ele.me, direct
+host-suffix, tesla.com, direct
+host-suffix, tesla.cn, direct
+host-suffix, teslamotors.com, direct
+host-suffix, vfsglobal.com, direct
+host-suffix, tools.emmmm.dev, direct
+host-suffix, api.rcuts.com, direct
+host-suffix, ddxq.mobi, direct
+host-suffix, libvio.com, direct
+host-suffix, libvio.fun, direct
+host-suffix, libvio.pro, direct
+host-suffix, mescroll.com, direct
+host-suffix, byteimg.com, direct
+host-suffix, frdic.com, direct
+host-suffix, udache.com, direct
+host-suffix, umeng.com, direct
+host-suffix, didistatic.com, direct
+host-suffix, diditaxi.com, direct
+host-suffix, doubao.com, direct
+host-suffix, youku.com, direct
+host-suffix, qchannel03.cn, direct
+host-suffix, qchannel01.cn, direct
+host-suffix, sinaimg.cn, direct
+host-suffix, getui.com, direct
+host-suffix, qunarzz.com, direct
+host-suffix, qunar.com, direct
+host-suffix, 12306.cn, direct
+host-suffix, 2nt.com, direct
+host-suffix, zvo.cn, direct
+host-suffix, mini4k.com, direct
+HOST-SUFFIX,johii.com, direct
+host-suffix, jd.cn, direct
+host-suffix, jd.com.cn, direct
+host-suffix, jd-app.com, direct
+host-suffix, jdcdn.com, direct
+host-suffix, jdcache.com, direct
+host-suffix, jdcontent.com, direct
+host-suffix, jingdong.com, direct
+host-suffix, jdpaydns.com, direct
+host-suffix, xianyu.mobi, direct
+host-suffix, samsclub.cn, direct
+host-suffix, walmart.cn, direct
+host-suffix, pddpic.com, direct
+host-suffix, yangkeduo.com, direct
+host-suffix, 95516.com, direct
+host-suffix, 95516.net, direct
+host-suffix, chinaunionpay.com, direct
+host-suffix, chinaunionpay.com.cn, direct
+host-suffix, unionpay.com, direct
+host-suffix, unionpay.net, direct
+host-suffix, unionpaysecure.com, direct
+host-suffix, chinapay.cn, direct
+host-suffix, chinapay.com, direct
+host-suffix, cup62.cn, direct
+host-suffix, pingan.com, direct
+host-suffix, 18ebank.com, direct
+host-suffix, pinganonline.com.cn, direct
+host-suffix, boc.cn, direct
+host-suffix, bankofchina.com, direct
+host-suffix, bank-of-china.com, direct
+host-suffix, bocservices.com.cn, direct
+host-suffix, spdb.com.cn, direct
+host-suffix, cib.com.cn, direct
+host-suffix, didi.cn, direct
+host-suffix, didichuxing.com, direct
+host-suffix, didiapp.net.cn, direct
+host-suffix, didiopenapi.com, direct
+host-suffix, diditaxi.com.cn, direct
+host-suffix, didiwuxian.com, direct
+host-suffix, didiqiche.com, direct
+host-suffix, xiaojuchefu.cn, direct
+host-suffix, c-ctrip.com, direct
+host-suffix, ctrip.cn, direct
+host-suffix, ctrip.com, direct
+host-suffix, ctripbiz.com, direct
+host-suffix, tripcdn.com, direct
+host-suffix, tieyou.com, direct
+host-suffix, kugou.com, direct
+host-suffix, kugou.net, direct
+host-suffix, kugoo.com, direct
+host-suffix, kgimg.com, direct
+host-suffix, kglink.cn, direct
+host-suffix, kugouipv6.com, direct
+host-suffix, xhscdn.net, direct
+host-suffix, fengkongcloud.com, direct
+host-suffix, alipay.net, direct
+host-suffix, alipaydns.com, direct
+host-suffix, ifaa.org.cn, direct
+host-suffix, qpic.cn, direct
+host-suffix, qlogo.cn, direct
+host-suffix, tp-link.com.cn, direct
+ip-cidr, 10.0.0.0/8, direct, no-resolve
+ip-cidr, 100.64.0.0/10, direct, no-resolve
+ip-cidr, 127.0.0.0/8, direct, no-resolve
+ip-cidr, 172.16.0.0/12, direct, no-resolve
+ip-cidr, 192.168.0.0/16, direct, no-resolve
+ip-cidr, 224.0.0.0/24, direct, no-resolve
+ip6-cidr, ::1/128, direct, no-resolve
+ip6-cidr, fc00::/7, direct, no-resolve
+ip6-cidr, fe80::/10, direct, no-resolve
+#日本
+host-suffix, ko-video.com, 🌸DMM
+host-suffix, trance-video.com, 🌸DMM
+host-suffix, bance.jp, 🌸DMM
+host-suffix, p-smith.com, 🌸DMM
+host-suffix, s.yimg.jp, 🌸DMM
+host-suffix, fc2.com, 🌸DMM
+host-suffix, games-video.co.jp, 🌸DMM
+host-suffix, ck-download.com, 🌸DMM
+host-suffix, ko-tube.com, 🌸DMM
+host-suffix, hunk-ch.com, 🌸DMM
+host-suffix, dlserv3.com, 🌸DMM
+host-suffix, boy-studio.com, 🌸DMM
+host-suffix, acceed.jp, 🌸DMM
+host-suffix, boyslab.jp, 🌸DMM
+host-suffix, mensrush.tv, 🌸DMM
+host-suffix, nightalks.com, 🌸DMM
+host-suffix, otokoki.net, 🌸DMM
+#新加坡
+host-suffix, discomax.com, 🥁Netflix
+host-suffix, coat.co.jp, 🥁Netflix
+host-suffix, gvdb.org, 🥁Netflix
+host-suffix, gay104.com,🥁Netflix
+host-suffix, boy104.com, 🥁Netflix
+host-suffix, javdb.com, 🥁Netflix
+host-suffix, jdbstatic.com, 🥁Netflix
+host-suffix, yandex.ru, 🥁Netflix
+host-suffix, iboy1069.com, 🥁Netflix
+host-suffix, 1069boys.net, 🥁Netflix
+host-suffix, tysq1.xyz, 🥁Netflix
+host-suffix, tt1069.com, 🥁Netflix
+host-suffix, fiat24.com, 🥁Netflix
+host-suffix, interactivebrokers.com, 🥁Netflix
+host-suffix, interactivebrokers.com.sg, 🥁Netflix
+host-suffix, ibkr.com, 🥁Netflix
+host-suffix, ibkr.com.cn, 🥁Netflix
+#美国
+host-suffix, ttwstatic.com, 🧩Spotify
+host-suffix, ttcdn-us.com, 🧩Spotify
+host-suffix, ttlivecdn.com, 🧩Spotify
+host-suffix, ttoverseaus.net, 🧩Spotify
+host-suffix, byteoversea.net, 🧩Spotify
+host-suffix, byteglb.com, 🧩Spotify
+host, bytedance.map.fastly.net, 🧩Spotify
+host-suffix, bing.com, 🧩Spotify
+host-suffix, pornhub.com, 🧩Spotify
+host-suffix,boyfriendtv.com, 🧩Spotify
+host-suffix, wise.com, 🧩Spotify
+host-suffix, revolut.com, 🧩Spotify
+host-suffix, facebook.com, 🧩Spotify
+host-suffix, x.ai, 🧩Spotify
+host-suffix, grok.com, 🧩Spotify
+host-suffix, reddit.com, 🧩Spotify
+host-suffix, redd.it, 🧩Spotify
+host-suffix, redditstatic.com, 🧩Spotify
+host-suffix, redditmedia.com, 🧩Spotify
+host-suffix, stripe.network, 🧩Spotify
+host-suffix, paypal.com, 🧩Spotify
+host-suffix, paypalobjects.com, 🧩Spotify
+host-suffix, fluidkey.com, 🧩Spotify
+#苹果ai
+host-suffix, apple-relay.apple.com, 🐟Final
+host-suffix, apple-relay.cloudflare.com, 🐟Final
+host-suffix, apple-relay.fastly-edge.com, 🐟Final
+host-suffix, apple-relay.mask.apple-dns.net,🐟Final
+host-suffix, gspe1-ssl.ls.apple.com, 🐟Final
+host, guzzoni.apple.com, 🐟Final
+host-suffix, smoot.apple.com, 🐟Final
+host, cp4.cloudflare.com, 🐟Final
+#final
+host-suffix, iturrit.com, 🐟Final
+host-suffix, termius.com, 🐟Final
+host-suffix, unsplash.com, 🐟Final
+host-suffix, v2ex.com, 🐟Final
+host-suffix, ify.tv, 🐟Final
+host-suffix, flyingblue.com, 🐟Final
+host-suffix, airfranceklm.com, 🐟Final
+host-suffix, discord.com, 🐟Final
+host-suffix, quantumult.app, 🐟Final
+host-suffix, github.com, 🐟Final
+host-suffix, github.io, 🐟Final
+host-suffix, githubusercontent.com, 🐟Final
+host-suffix, githubassets.com, 🐟Final
+host-suffix, github.dev, 🐟Final
+host-suffix, tampermonkey.net, 🐟Final
+host-suffix, linkedin.com, 🐟Final
+host-suffix, licdn.com, 🐟Final
+host-suffix, lnkd.in, 🐟Final
+host-suffix, speedtest.net, 🐟Final
+host-suffix, ooklaserver.net, 🐟Final
+host-suffix, unogs.com, 🐟Final
+host-suffix, archive.org, 🐟Final
+host-suffix, lowendtalk.com, 🐟Final
+host-suffix, nodeseek.com, 🐟Final
+host-suffix, cloudfront.net, 🐟Final
+#geoip, cn, direct, no-resolve
+#host-keyword, ., 🐟Final
+geoip, cn, direct
+final, 🐟Final
+
+[rewrite_local]
+^https?:\/\/(www.)?(g|google)\.cn url 302 https://www.google.com
+^https?:\/\/(ditu|maps).google\.cn url 302 https://maps.google.com
+[task_local]
+event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js, tag=Check Media, img-url=arrowtriangle.right.square.system, enabled=true
+event-interaction https://ddgksf2013.top/scripts/server-info-pure.js, tag=Check IP, img-url=checkmark.shield.fill.system
+event-interaction https://raw.githubusercontent.com/xream/scripts/main/surge/modules/network-info/net-lsp-x.js, tag=Check Network, img-url=link.circle.system, enabled=true
+[http_backend]
+
+[mitm]
+# 跳过验证证书
+skip_validating_cert = false
+# 强制SNI域名
+force_sni_domain_name = false
+# 主机名
+hostname = pangolin-sdk-toutiao.com, pglstatp-toutiao.com, byteimg.com, pstatp.com, snssdk.com, -*amemv.com, -*snssdk.com, -www.google.com, ms.jr.jd.com, me-api.jd.com, api.m.jd.com, *.byteoversea.com, *.tik-tokapi.com, c.tieba.baidu.com, google.cn
