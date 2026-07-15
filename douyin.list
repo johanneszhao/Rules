@@ -1,33 +1,65 @@
-# --- 核心域名 ---
-DOMAIN-SUFFIX,amemv.com,direct
-DOMAIN-SUFFIX,douyincdn.com,direct
-DOMAIN-SUFFIX,douyinpic.com,direct
-DOMAIN-SUFFIX,douyinstatic.com,direct
-DOMAIN-SUFFIX,douyinvod.com,direct
-DOMAIN-SUFFIX,idouyinvod.com,direct
-DOMAIN-SUFFIX,douyinliving.com,direct
+# 字节国内基础服务
+host-suffix, bytedance.com, direct
+host-suffix, bytemaimg.com, direct
+host-suffix, byteimg.com, direct
+host-suffix, bytemastatic.com, direct
+host-suffix, byteeffecttos.com, direct
+host-suffix, bytecdn.com, direct
+host-suffix, bytecdn.cn, direct
+host-suffix, bytecdn.net, direct
+host-suffix, bytehwm.com, direct
+host-suffix, bytegecko.com, direct
+host-suffix, bytegeckoext.com, direct
+host-suffix, bytescm.com, direct
+host-suffix, bytetos.com, direct
+host-suffix, toscdn.com, direct
+host-suffix, bytednsdoc.com, direct
+host-suffix, pstatp.com, direct
 
-# --- 字节跳动通用/静态资源/CDN ---
-DOMAIN-SUFFIX,bytecdn.com,direct
-DOMAIN-SUFFIX,bytegecko.com,direct
-DOMAIN-SUFFIX,bdurl.net,direct
-DOMAIN-SUFFIX,pstatp.com,direct
-DOMAIN-SUFFIX,snssdk.com,direct
-DOMAIN-SUFFIX,zijieapi.com,direct
-DOMAIN-SUFFIX,zjcdn.com,direct
-DOMAIN,lf3-static.bytednsdoc.com,direct
-DOMAIN,v5-dy-o-abtest.zjcdn.com,direct
+# 字节国内API/CDN
+host-suffix, zijieapi.com, direct
+host-suffix, zijieapi.cn, direct
+host-suffix, zijieapi.net, direct
+host-suffix, zijiecdn.com, direct
+host-suffix, zijiecdn.cn, direct
+host-suffix, zijiecdn.net, direct
+host-suffix, zjcdn.com, direct
 
-# --- 相关业务（西瓜/头条/百科/火山） ---
-DOMAIN-SUFFIX,ixigua.com,direct
-DOMAIN-SUFFIX,ixiguavideo.com,direct
-DOMAIN-SUFFIX,toutiao.com,direct
-DOMAIN-SUFFIX,baike.com,direct
-DOMAIN-SUFFIX,huoshanimg.com,direct
+# 抖音核心
+host-suffix, amemv.com, direct
+host-suffix, amemv.cn, direct
+host-suffix, amemv.net, direct
+host-suffix, douyin.com, direct
+host-suffix, douyinact.com, direct
+host-suffix, douyinact.net, direct
+host-suffix, douyincdn.com, direct
+host-suffix, douyinfe.com, direct
+host-suffix, douyinliving.com, direct
+host-suffix, douyinpic.com, direct
+host-suffix, douyinstatic.com, direct
+host-suffix, douyinvod.com, direct
+host-suffix, idouyinliving.com, direct
+host-suffix, idouyinpic.com, direct
+host-suffix, idouyinstatic.com, direct
+host-suffix, idouyinvod.com, direct
+host-suffix, iesdouyin.com, direct
+host-suffix, iesdouyin.net, direct
 
-# --- 其他关联（如腾讯 CDN，根据你提供的列表保留） ---
-DOMAIN-SUFFIX,gtimg.com,direct
-DOMAIN-SUFFIX,gtimg.cn,direct
-DOMAIN-SUFFIX,yingt.fun,direct
-DOMAIN-SUFFIX,bytehwm.com,direct
-DOMAIN-SUFFIX,bytemastatic.com,direct
+# 抖音支付和开放平台
+host-suffix, doupay.com, direct
+host-suffix, douyinpay.com, direct
+host-suffix, open-douyin.com, direct
+
+# 抖音直播/火山资源
+host-suffix, huoshan.com, direct
+host-suffix, huoshancdn.com, direct
+host-suffix, huoshanimg.com, direct
+host-suffix, huoshanlive.com, direct
+host-suffix, huoshanstatic.com, direct
+host-suffix, huoshanvod.com, direct
+
+# 西瓜/头条/百科
+host-suffix, ixigua.com, direct
+host-suffix, ixiguavideo.com, direct
+host-suffix, toutiao.com, direct
+host-suffix, baike.com, direct
