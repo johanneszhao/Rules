@@ -1,9 +1,7 @@
 host, e13252.dscg.akamaiedge.net, Netflix
 host, h-netflix.online-metrix.net, Netflix
 host, netflix.com.edgesuite.net, Netflix
-host-suffix, cookielaw.org, Netflix
 host-suffix, fast.com, Netflix
-host-suffix, flxvpn.net, Netflix
 host-suffix, netflix.ca, Netflix
 host-suffix, netflix.com, Netflix
 host-suffix, netflix.com.au, Netflix
@@ -29,8 +27,6 @@ host-suffix, nflximg.net, Netflix
 host-suffix, nflxsearch.net, Netflix
 host-suffix, nflxso.net, Netflix
 host-suffix, nflxvideo.net, Netflix
-host-suffix, onetrust.com, Netflix
-host-suffix, us-west-2.amazonaws.com, Netflix
 host-wildcard, netflixdnstest*.com, Netflix
 host-keyword, apiproxy-device-prod-nlb-, Netflix
 host-keyword, dualstack.apiproxy-, Netflix
