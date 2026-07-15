@@ -1,31 +1,254 @@
-HOST,ai.google.dev,Google
-HOST,alkalimakersuite-pa.clients6.google.com,Google
-HOST,makersuite.google.com,Google
-HOST-SUFFIX,bard.google.com,Google
-HOST-SUFFIX,deepmind.com,Google
-HOST-SUFFIX,deepmind.google,Google
-HOST-SUFFIX,gemini.google.com,Google
-HOST-SUFFIX,generativeai.google,Google
-HOST-SUFFIX,proactivebackend-pa.googleapis.com,Google
-HOST-SUFFIX,apis.google.com,Google
-HOST-KEYWORD,colab,Google
-HOST-KEYWORD,developerprofiles,Google
-HOST-KEYWORD,generativelanguage,Google
-HOST-SUFFIX,1e100.net,Google
-HOST-SUFFIX,2mdn.net,Google
-HOST-SUFFIX,app-measurement.net,Google
-HOST-SUFFIX,c.gle,Google
-HOST-SUFFIX,g.co,Google
-HOST-SUFFIX,ggpht.com,Google
-HOST-SUFFIX,goo.gl,Google
-HOST-SUFFIX,googleapis.cn,Google
-HOST-SUFFIX,googleapis.com,Google
-HOST-SUFFIX,gstatic.cn,Google
-HOST-SUFFIX,gstatic.com,Google
-HOST-SUFFIX,gvt0.com,Google
-HOST-SUFFIX,gvt3.com,Google
-HOST-SUFFIX,xn--ngstr-lra8j.com,Google
-HOST-KEYWORD,gmail,Google
-HOST-KEYWORD,google,Google
-IP-CIDR,173.194.0.0/16,Google
-IP-CIDR,74.125.0.0/16,Google
+# Google 广告
+host-keyword, doubleclick, reject
+host-keyword, admob, reject
+host-keyword, adsense, reject
+host-keyword, adwords, reject
+host-keyword, googlead, reject
+host-keyword, googlevads, reject
+host-keyword, googlesyndication, reject
+host-keyword, googletagservices, reject
+
+# Google Analytics / 应用归因
+host-keyword, google-analytics, reject
+host-keyword, googleanalytics, reject
+host-keyword, app-measurement, reject
+host-keyword, app-analytics-services, reject
+
+host-suffix, 2mdn.net, reject
+host-suffix, 2mdn-cn.net, reject
+host-suffix, urchin.com, reject
+
+host, adservice.google.com, reject
+host, adtrafficquality.google, reject
+host, analytics.google.com, reject
+host, fcmatch.google.com, reject
+host, mail-ads.google.com, reject
+host, mobileads.google.com, reject
+host, pagead.l.google.com, reject
+host, partnerad.l.google.com, reject
+host, ads.youtube.com, reject
+
+
+# ==================================================
+# Google / YouTube / Gemini / Workspace 精简整合版
+# Policy: google
+# ==================================================
+
+# ---------- 核心品牌与国家域名 ----------
+# 覆盖 google.com、google.co.jp、google.com.hk、googleapis、
+# googleusercontent、googlevideo、googledrive、Google Maps/Photos/Meet 等
+host-keyword, google, google
+
+# 覆盖全部 YouTube 国家域名、YouTube Music、YouTube Kids、API 等
+host-keyword, youtube, google
+
+# Blogger 全球国家域名
+host-keyword, blogspot, google
+host-suffix, blogger.com, google
+host-suffix, blogblog.com, google
+
+# Gmail、App Engine、reCAPTCHA
+host-keyword, gmail, google
+host-keyword, appspot, google
+host-keyword, recaptcha, google
+
+# Google 静态资源/CDN
+host-keyword, gstatic, google
+host-keyword, ggpht, google
+host-keyword, gvt, google
+
+# Firebase、DeepMind、Kaggle
+host-keyword, firebase, google
+host-keyword, deepmind, google
+host-keyword, kaggle, google
+
+# ---------- Google 自有顶级域 ----------
+# Google 专属品牌顶级域
+host-suffix, android, google
+host-suffix, chrome, google
+host-suffix, dclk, google
+host-suffix, gbiz, google
+host-suffix, gle, google
+host-suffix, gmail, google
+host-suffix, goog, google
+host-suffix, google, google
+host-suffix, guge, google
+host-suffix, hangout, google
+host-suffix, nexus, google
+host-suffix, youtube, google
+host-suffix, xn--flw351e, google
+host-suffix, xn--qcka1pmc, google
+
+
+
+# 谷歌 / グーグル 国际化顶级域
+host-suffix, xn--flw351e, google
+host-suffix, xn--qcka1pmc, google
+
+# ---------- Google 网络基础设施 ----------
+host-suffix, 1e100.net, google
+host-suffix, 0emm.com, google
+host-suffix, 1ucrs.com, google
+host-suffix, 466453.com, google
+host-suffix, g-tun.com, google
+host-suffix, txcloud.net, google
+host-suffix, txvia.com, google
+
+# Google 短域名
+host-suffix, g.cn, google
+host-suffix, g.co, google
+host-suffix, g.dev, google
+host-suffix, g.page, google
+host-suffix, goo.gl, google
+
+# Google Cloud / Artifact Registry / Serverless
+host-suffix, gcr.io, google
+host-suffix, gsrc.io, google
+host-suffix, pkg.dev, google
+host-suffix, run.app, google
+host-suffix, web.app, google
+host-suffix, cloudfunctions.net, google
+
+# Google Play 中国相关 IDN/CDN
+host-suffix, xn--ngstr-lra8j.com, google
+host-suffix, gkecnapps.cn, google
+
+# ---------- YouTube 非品牌 CDN ----------
+# youtube 和 googlevideo 已由上面的 keyword 覆盖
+host-suffix, youtu.be, google
+host-suffix, yt.be, google
+host-suffix, ytimg.com, google
+
+# ---------- Google Workspace / Drive ----------
+# drive.google.com、googleapis、googleusercontent 已被 google keyword 覆盖
+host-suffix, docs.new, google
+host-suffix, doc.new, google
+host-suffix, sheets.new, google
+host-suffix, sheet.new, google
+host-suffix, slides.new, google
+host-suffix, slide.new, google
+host-suffix, forms.new, google
+host-suffix, form.new, google
+host-suffix, meet.new, google
+host-suffix, calendar.new, google
+host-suffix, cal.new, google
+host-suffix, drive.new, google
+host-suffix, sites.new, google
+host-suffix, site.new, google
+host-suffix, script.new, google
+host-suffix, whats.new, google
+
+# Workspace/Chat 相关服务
+host-suffix, page.link, google
+host-suffix, tenor.com, google
+host-suffix, jibemobile.com, google
+
+# ---------- Gemini / DeepMind / Google AI ----------
+# Gemini、Bard、AI Studio 的 google.com/googleapis 域名已由 google 覆盖
+# gemini.gstatic.com 已由 gstatic 覆盖
+# antigravity-unleash.goog 已由 .goog 覆盖
+host-keyword, gemini, google
+host-keyword, gstatic, google
+host-keyword, deepmind, google
+host-suffix, goog, google
+host-suffix, google, google
+host-suffix, ai.studio, google
+
+# Google AI 历史/关联服务
+
+host-suffix, api.ai, google
+host-suffix, dialogflow.com, google
+
+
+# 当前 Xray 新增的以下服务也已经被上面的父规则覆盖：
+# Gemini Code Assist / NotebookLM / Jules / Labs / Opal
+# Antigravity / Stitch / Generative Language API / AI Studio
+
+# ---------- Android / Chrome / Google Play ----------
+host-suffix, android.com, google
+host-suffix, androidify.com, google
+host-suffix, androidtv.com, google
+host-suffix, chrome.com, google
+host-suffix, chromebook.com, google
+host-suffix, chromecast.com, google
+host-suffix, chromeexperiments.com, google
+host-suffix, chromeos.dev, google
+host-suffix, chromestatus.com, google
+host-suffix, chromium.org, google
+host-suffix, crbug.com, google
+host-suffix, crrev.com, google
+host-suffix, fuchsia.dev, google
+host-suffix, widevine.com, google
+host-suffix, digitalassetlinks.org, google
+host-suffix, material.io, google
+host-suffix, privacysandbox.com, google
+host-suffix, j2objc.org, google
+host-suffix, webrtc.org, google
+host-suffix, webmproject.org, google
+
+# ---------- Google Cloud / 安全服务 ----------
+host-suffix, apigee.com, google
+host-suffix, looker.com, google
+host-suffix, chronicle.security, google
+host-suffix, chroniclesec.com, google
+host-suffix, mandiant.com, google
+host-suffix, virustotal.com, google
+host-suffix, virustotalusercontent.com, google
+
+# ---------- Google 开发者生态 ----------
+host-suffix, amp.dev, google
+host-suffix, ampproject.com, google
+host-suffix, ampproject.net, google
+host-suffix, ampproject.org, google
+host-suffix, angulardart.org, google
+host-suffix, bazel.build, google
+host-suffix, dart.dev, google
+host-suffix, dartlang.org, google
+host-suffix, dartpad.dev, google
+host-suffix, flutter.dev, google
+host-suffix, flutterapp.com, google
+host-suffix, go.dev, google
+host-suffix, golang.com, google
+host-suffix, golang.net, google
+host-suffix, golang.org, google
+host-suffix, godoc.org, google
+host-suffix, gerritcodereview.com, google
+host-suffix, fastlane.ci, google
+host-suffix, fastlane.tools, google
+host-suffix, tensorflow.org, google
+host-suffix, tfhub.dev, google
+host-suffix, v8.dev, google
+host-suffix, v8project.org, google
+host-suffix, polymer-project.org, google
+host-suffix, polymerproject.org, google
+host-suffix, deps.dev, google
+host-suffix, deps.info, google
+host-suffix, opensourceinsight.dev, google
+host-suffix, opensourceinsights.dev, google
+host-suffix, certificate-transparency.org, google
+host-suffix, conscrypt.com, google
+host-suffix, conscrypt.org, google
+host-suffix, keytransparency.com, google
+host-suffix, keytransparency.foo, google
+host-suffix, keytransparency.org, google
+host-suffix, openthread.io, google
+host-suffix, openweave.io, google
+
+# ---------- Google / Alphabet 其他主要产品 ----------
+host-suffix, 265.com, google
+host-suffix, abc.xyz, google
+host-suffix, capitalg.com, google
+host-suffix, gv.com, google
+host-suffix, x.company, google
+host-suffix, x.team, google
+host-suffix, fitbit.com, google
+host-suffix, nest.com, google
+host-suffix, waymo.com, google
+host-suffix, waze.com, google
+host-suffix, snapseed.com, google
+host-suffix, feedburner.com, google
+host-suffix, keyhole.com, google
+host-suffix, itasoftware.com, google
+host-suffix, verily.com, google
+host-suffix, verilylifesciences.com, google
+host-suffix, wallet.com, google
