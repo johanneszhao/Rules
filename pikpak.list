@@ -1,10 +1,11 @@
+host-suffix, mypikpak.net, pikpak
+host-suffix, mypikpak.com, pikpak
 host, flowcontrol.dcdn.mypikpak.com, pikpak
 host-suffix, hub.dcdn.mypikpak.com, pikpak
 host-suffix, hub5pr.mypikpak.com, pikpak
 host-suffix, hub5emu.mypikpak.com, pikpak
 host-suffix, api-drive.mypikpak.net, pikpak
 host-suffix, api-drive.mypikpak.com, pikpak
-host, mypikpak.com, pikpak
 host, static.mypikpak.com, pikpak
 host, res-etl-ssl.mypikpak.com, pikpak
 host, hubciddata.mypikpak.com, pikpak
