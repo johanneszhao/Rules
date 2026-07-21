@@ -42,6 +42,7 @@ HOST-SUFFIX,ttoversea.net,TikTok
 HOST-SUFFIX,ttoverseaus.net,TikTok
 HOST-SUFFIX,ttwebview.com,TikTok
 HOST-SUFFIX,ttwstatic.com,TikTok
+HOST-SUFFIX,oraclecloud.com,TIKTOK
 HOST-KEYWORD,musical.ly,TikTok
 HOST-KEYWORD,tiktok,TikTok
 USER-AGENT,TikTok*,TikTok
